@@ -1,0 +1,61 @@
+.uploader {
+    overflow: hidden;
+    clear: both;
+}
+.uploader .btn {
+    overflow: hidden;
+    position: relative;
+    clear: both;
+}
+.uploader-browse input {
+    border: none;
+    outline: none;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    font-size: 100px;
+    position: absolute;
+    cursor: pointer;
+    top: -20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.uploader-progress {
+    display: none;
+}
+.uploader-progress .progress {
+    margin-bottom: 0 !important;
+}
+.uploader-preview {
+    float: left;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+    clear: both;
+}
+.uploader-preview-delete {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+}
+.uploader-preview-delete span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+.uploader-preview:hover .uploader-preview-delete {
+    display: block;
+    background: #f38083;
+    opacity: 0.9;
+    filter: alpha(opacity=0.9);
+    cursor: pointer;
+}
+#modal-preview {
+    text-align: center;
+}
