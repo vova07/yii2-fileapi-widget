@@ -269,10 +269,13 @@ class Widget extends InputWidget
         }
     }
 
+    /**
+     * Registering already uploaded files.
+     */
     public function registerFiles()
     {
         if (!isset($this->settings['multiple']) || $this->settings['multiple'] === false) {
-            if ($this->hasModel() && $this->model->{$this->attribute}) {
+            if ($this->hasModel() && $this->model->{$this->attribute} && $this->model->fileExists($this->attribute)) {
                 $this->settings['files'][] = [
                     'src' => $this->model->urlAttribute($this->attribute),
                     'name' => $this->model->{$this->attribute},

@@ -294,4 +294,14 @@ class UploadBehavior extends Behavior
     {
         return FileHelper::getMimeType($this->file($attribute));
     }
+
+    /**
+     * @param string $attribute Attribute name
+     *
+     * @return boolean Whether file exist or not
+     */
+    public function fileExists($attribute)
+    {
+        return file_exists($this->file($attribute));
+    }
 }
