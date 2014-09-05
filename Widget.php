@@ -2,6 +2,7 @@
 
 namespace vova07\fileapi;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -209,7 +210,7 @@ class Widget extends InputWidget
             }
             $this->_defaultSettings = $this->_defaultSingleSettings;
         }
-        $this->settings = array_merge($this->_defaultSettings, $this->settings);
+        $this->settings = ArrayHelper::merge($this->_defaultSettings, $this->settings);
     }
 
     /**
