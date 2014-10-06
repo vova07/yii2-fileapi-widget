@@ -82,7 +82,7 @@ class Widget extends InputWidget
      * @var array JCrop settings
      */
     public $jcropSettings = [
-        'aspectRtio' => 1,
+        'aspectRatio' => 1,
         'bgColor' => '#ffffff',
         'maxSize' => [568, 800],
         'minSize' => [100, 100],
