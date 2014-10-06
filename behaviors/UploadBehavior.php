@@ -80,7 +80,7 @@ class UploadBehavior extends Behavior
                     throw new InvalidParamException('Temporary path must be set for all attributes.');
                 }
                 if (!isset($config['url']) || empty($config['url'])) {
-                    throw new InvalidParamException('URL must be set for all attributes.');
+                    $config['url'] = $this->publish($config['path']);
                 }
                 $this->attributes[$attribute]['path'] = FileHelper::normalizePath(Yii::getAlias($config['path'])) . DIRECTORY_SEPARATOR;
                 $this->attributes[$attribute]['tempPath'] = FileHelper::normalizePath(Yii::getAlias($config['tempPath'])) . DIRECTORY_SEPARATOR;
@@ -91,6 +91,20 @@ class UploadBehavior extends Behavior
                 unset($validator);
             }
         }
+    }
+
+    protected static $_cache_publish_path = [];
+
+    /**
+     * @param $path
+     * @return string published url ( /assets/sdfgkdg/ )
+     */
+    public function publish($path)
+    {
+        if (!isset(static::$_cache_publish_path[$path])) {
+            static::$_cache_publish_path[$path] = Yii::$app->assetManager->publish($path)[1];
+        }
+        return static::$_cache_publish_path[$path];
     }
 
     /**
