@@ -63,6 +63,11 @@ class UploadBehavior extends Behavior
     public $unlinkOnDelete = true;
 
     /**
+     * @var array Publish path cache array
+     */
+    protected $_cachePublishPath = [];
+
+    /**
      * @inheritdoc
      */
     public function attach($owner)
@@ -91,20 +96,6 @@ class UploadBehavior extends Behavior
                 unset($validator);
             }
         }
-    }
-
-    protected static $_cache_publish_path = [];
-
-    /**
-     * @param $path
-     * @return string published url ( /assets/sdfgkdg/ )
-     */
-    public function publish($path)
-    {
-        if (!isset(static::$_cache_publish_path[$path])) {
-            static::$_cache_publish_path[$path] = Yii::$app->assetManager->publish($path)[1];
-        }
-        return static::$_cache_publish_path[$path];
     }
 
     /**
@@ -231,6 +222,21 @@ class UploadBehavior extends Behavior
     public function file($attribute)
     {
         return $this->path($attribute) . $this->owner->$attribute;
+    }
+
+    /**
+     * Publish given path.
+     *
+     * @param string $path Path
+     *
+     * @return string Published url (/assets/images/image1.png)
+     */
+    public function publish($path)
+    {
+        if (!isset($this->_cachePublishPath[$path])) {
+            $this->_cachePublishPath[$path] = Yii::$app->assetManager->publish($path)[1];
+        }
+        return $this->_cachePublishPath[$path];
     }
 
     /**
