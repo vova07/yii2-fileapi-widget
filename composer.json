@@ -16,7 +16,7 @@
     },
     "require": {
         "yiisoft/yii2": "*",
-        "rubaxa/fileapi": "dev-dev"
+        "rubaxa/fileapi": "*"
     },
     "autoload": {
         "psr-4": {
