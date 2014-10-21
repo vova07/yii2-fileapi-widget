@@ -65,7 +65,7 @@ class UploadBehavior extends Behavior
     /**
      * @var array Publish path cache array
      */
-    protected $_cachePublishPath = [];
+    protected static $_cachePublishPath = [];
 
     /**
      * @inheritdoc
@@ -233,10 +233,10 @@ class UploadBehavior extends Behavior
      */
     public function publish($path)
     {
-        if (!isset($this->_cachePublishPath[$path])) {
-            $this->_cachePublishPath[$path] = Yii::$app->assetManager->publish($path)[1];
+        if (!isset(static::$_cachePublishPath[$path])) {
+            static::$_cachePublishPath[$path] = Yii::$app->assetManager->publish($path)[1];
         }
-        return $this->_cachePublishPath[$path];
+        return static::$_cachePublishPath[$path];
     }
 
     /**
