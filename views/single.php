@@ -36,7 +36,7 @@ use vova07\fileapi\Widget;
             <a href="#" class="uploader-preview">
                 <span data-fileapi="delete" class="uploader-preview-delete"><span
                         class="glyphicon glyphicon-trash"></span></span>
-                <span data-fileapi="preview"></span>
+                <span data-fileapi="preview" class="uploader-preview-wrapper"></span>
             </a>
         <?php endif; ?>
         <?= $input ?>

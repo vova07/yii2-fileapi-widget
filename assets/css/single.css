@@ -56,6 +56,10 @@
     filter: alpha(opacity=0.9);
     cursor: pointer;
 }
+.uploader-preview > span.uploader-preview-wrapper,
+.uploader-preview > span.uploader-preview-wrapper > canvas{
+    display:block;
+}
 #modal-preview {
     text-align: center;
 }
