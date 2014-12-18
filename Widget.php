@@ -101,6 +101,11 @@ class Widget extends InputWidget
     public $cropResizeHeight;
 
     /**
+     * @var string|null Real attribute name without any indexes in case this are setted
+     */
+    protected $_attributeName;
+
+    /**
      * @var array Default settings array
      */
     private $_defaultSettings;
@@ -261,7 +266,7 @@ class Widget extends InputWidget
                         'selector' => $this->getSelector(),
                         'input' => $input,
                         'paramName' => $this->paramName,
-                        'value' => $this->model->{$this->attribute},
+                        'value' => $this->model->{$this->attributeName},
                         'preview' => $this->preview,
                         'crop' => $this->crop
                     ]
@@ -276,11 +281,11 @@ class Widget extends InputWidget
     public function registerFiles()
     {
         if (!isset($this->settings['multiple']) || $this->settings['multiple'] === false) {
-            if ($this->hasModel() && $this->model->{$this->attribute} && $this->model->fileExists($this->attribute)) {
+            if ($this->hasModel() && $this->model->{$this->attributeName} && $this->model->fileExists($this->attributeName)) {
                 $this->settings['files'][] = [
-                    'src' => $this->model->urlAttribute($this->attribute),
-                    'name' => $this->model->{$this->attribute},
-                    'type' => $this->model->getMimeType($this->attribute)
+                    'src' => $this->model->urlAttribute($this->attributeName),
+                    'name' => $this->model->{$this->attributeName},
+                    'type' => $this->model->getMimeType($this->attributeName)
                 ];
             }
         }
@@ -345,6 +350,16 @@ class Widget extends InputWidget
         if ($this->crop === true) {
             CropAsset::register($view);
         }
+    }
+    /**
+     * @return null|string Real attribute name without any indexes in case this are setted
+     */
+    protected function getAttributeName()
+    {
+        if ($this->_attributeName === null) {
+            $this->_attributeName = preg_replace('/\[.\]/iu', '', $this->attribute);
+        }
+        return $this->_attributeName;
     }
 
     /**
