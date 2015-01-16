@@ -385,6 +385,10 @@ class Widget extends InputWidget
 
             if ($this->cropResizeWidth !== null && $this->cropResizeHeight !== null) {
                 $cropResizeJs = "el.fileapi('resize', ufile, $this->cropResizeWidth, $this->cropResizeHeight);";
+            } else if ($this->cropResizeWidth !== null && $this->cropResizeHeight == null) {
+                $cropResizeJs = "el.fileapi('resize', ufile, $this->cropResizeWidth, ((coordinates.h * $this->cropResizeWidth)/coordinates.w));";
+            } else if ($this->cropResizeWidth == null && $this->cropResizeHeight !== null) {
+                $cropResizeJs = "el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeHeight)/coordinates.h), $this->cropResizeHeight);";
             } else {
                 $cropResizeJs = '';
             }
@@ -404,6 +408,9 @@ class Widget extends InputWidget
                         '$("#' . $selector . '").fileapi("crop", ufile, coordinates);' .
                         $cropResizeJs .
                     '};' .
+                    'FileAPI.getInfo(ufile, function (err, info){' .
+                        'if(!err){ var coordinates = { w: info.width, h: info.height }; ' . $cropResizeJs . '}' .
+                    '});;' .
                     'jQuery("#modal-crop").modal("show");' .
                     'setTimeout(function () {' .
                         '$("#modal-preview").cropper(jcropSettings);' .
