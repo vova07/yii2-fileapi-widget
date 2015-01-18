@@ -101,6 +101,16 @@ class Widget extends InputWidget
     public $cropResizeHeight;
 
     /**
+     * @var integer|null Crop resize max width
+     */
+    public $cropResizeMaxWidth;
+
+    /**
+     * @var integer|null Crop resize max height
+     */
+    public $cropResizeMaxHeight;
+
+    /**
      * @var string|null Real attribute name without any indexes in case this are setted
      */
     protected $_attributeName;
@@ -389,6 +399,13 @@ class Widget extends InputWidget
                 $cropResizeJs = "el.fileapi('resize', ufile, $this->cropResizeWidth, ((coordinates.h * $this->cropResizeWidth)/coordinates.w));";
             } else if ($this->cropResizeWidth == null && $this->cropResizeHeight !== null) {
                 $cropResizeJs = "el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeHeight)/coordinates.h), $this->cropResizeHeight);";
+            } else if ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight !== null) {
+                $cropResizeJs = "if(coordinates.w > $this->cropResizeMaxWidth) el.fileapi('resize', ufile, $this->cropResizeMaxWidth, ((coordinates.h * $this->cropResizeMaxWidth)/coordinates.w));";
+                $cropResizeJs .= "else if(coordinates.h > $this->cropResizeMaxHeight) el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeMaxHeight)/coordinates.h), $this->cropResizeMaxHeight);";
+            } else if ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight == null) {
+                $cropResizeJs = "if(coordinates.w > $this->cropResizeMaxWidth) el.fileapi('resize', ufile, $this->cropResizeMaxWidth, ((coordinates.h * $this->cropResizeMaxWidth)/coordinates.w));";
+            } else if ($this->cropResizeMaxWidth == null && $this->cropResizeMaxHeight !== null) {
+                $cropResizeJs = "if(coordinates.h > $this->cropResizeMaxHeight) el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeMaxHeight)/coordinates.h), $this->cropResizeMaxHeight);";
             } else {
                 $cropResizeJs = '';
             }
