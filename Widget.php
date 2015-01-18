@@ -395,16 +395,16 @@ class Widget extends InputWidget
 
             if ($this->cropResizeWidth !== null && $this->cropResizeHeight !== null) {
                 $cropResizeJs = "el.fileapi('resize', ufile, $this->cropResizeWidth, $this->cropResizeHeight);";
-            } else if ($this->cropResizeWidth !== null && $this->cropResizeHeight == null) {
+            } elseif ($this->cropResizeWidth !== null && $this->cropResizeHeight == null) {
                 $cropResizeJs = "el.fileapi('resize', ufile, $this->cropResizeWidth, ((coordinates.h * $this->cropResizeWidth)/coordinates.w));";
-            } else if ($this->cropResizeWidth == null && $this->cropResizeHeight !== null) {
+            } elseif ($this->cropResizeWidth == null && $this->cropResizeHeight !== null) {
                 $cropResizeJs = "el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeHeight)/coordinates.h), $this->cropResizeHeight);";
-            } else if ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight !== null) {
+            } elseif ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight !== null) {
                 $cropResizeJs = "if(coordinates.w > $this->cropResizeMaxWidth) el.fileapi('resize', ufile, $this->cropResizeMaxWidth, ((coordinates.h * $this->cropResizeMaxWidth)/coordinates.w));";
                 $cropResizeJs .= "else if(coordinates.h > $this->cropResizeMaxHeight) el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeMaxHeight)/coordinates.h), $this->cropResizeMaxHeight);";
-            } else if ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight == null) {
+            } elseif ($this->cropResizeMaxWidth !== null && $this->cropResizeMaxHeight == null) {
                 $cropResizeJs = "if(coordinates.w > $this->cropResizeMaxWidth) el.fileapi('resize', ufile, $this->cropResizeMaxWidth, ((coordinates.h * $this->cropResizeMaxWidth)/coordinates.w));";
-            } else if ($this->cropResizeMaxWidth == null && $this->cropResizeMaxHeight !== null) {
+            } elseif ($this->cropResizeMaxWidth == null && $this->cropResizeMaxHeight !== null) {
                 $cropResizeJs = "if(coordinates.h > $this->cropResizeMaxHeight) el.fileapi('resize', ufile, ((coordinates.w * $this->cropResizeMaxHeight)/coordinates.h), $this->cropResizeMaxHeight);";
             } else {
                 $cropResizeJs = '';
@@ -425,8 +425,8 @@ class Widget extends InputWidget
                         '$("#' . $selector . '").fileapi("crop", ufile, coordinates);' .
                         $cropResizeJs .
                     '};' .
-                    'FileAPI.getInfo(ufile, function (err, info){' .
-                        'if(!err){ var coordinates = { w: info.width, h: info.height }; ' . $cropResizeJs . '}' .
+                    'FileAPI.getInfo (ufile, function (err, info) {' .
+                        'if (!err) { var coordinates = { w: info.width, h: info.height }; ' . $cropResizeJs . '}' .
                     '});;' .
                     'jQuery("#modal-crop").modal("show");' .
                     'setTimeout(function () {' .
