@@ -21,7 +21,7 @@ return [
     'MODAL_CANCEL' => 'Abbrechen',
     'MODAL_SAVE' => 'Hochladen',
     'MODAL_TITLE' => 'Bild zuschneiden',
-    'BROWSER_DOESNT_SUPPORT_DRAG_AND_DROP' => 'der Browser unterstüzt kein "Drag & Drop"',
+    'BROWSER_DOESNT_SUPPORT_DRAG_AND_DROP' => 'Der Browser unterstüzt kein "Drag & Drop"',
     'BROWSE_BTN' => 'Durchsuchen',
     'DRAG_AND_DROP' => 'Drag & Drop',
 ];
