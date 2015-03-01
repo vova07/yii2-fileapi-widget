@@ -2,7 +2,7 @@
 
 return [
     'sourcePath' => dirname(__DIR__),
-    'languages' => ['en', 'ru'],
+    'languages' => ['de', 'en', 'it', 'pt-BR', 'ru'],
     'translator' => 'Widget::t',
     'sort' => false,
     'removeUnused' => true,
