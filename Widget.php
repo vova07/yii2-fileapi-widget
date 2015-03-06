@@ -79,6 +79,11 @@ class Widget extends InputWidget
     public $crop = false;
 
     /**
+     * @var bool Show/Hide browse glyphicon
+     */
+    public $browseGlyphicon = true;
+
+    /**
      * @var array JCrop settings
      */
     public $jcropSettings = [
@@ -278,7 +283,8 @@ class Widget extends InputWidget
                         'paramName' => $this->paramName,
                         'value' => $this->model->{$this->attributeName},
                         'preview' => $this->preview,
-                        'crop' => $this->crop
+                        'crop' => $this->crop,
+                        'browseGlyphicon' => $this->browseGlyphicon
                     ]
                 );
             }
