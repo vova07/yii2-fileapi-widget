@@ -264,6 +264,7 @@ class Widget extends InputWidget
                 return $this->render(
                     $this->template,
                     [
+                        'values' => $this->model->{$this->attributeName},
                         'selector' => $this->options['id'],
                         'paramName' => $this->paramName
                     ]
