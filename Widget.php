@@ -300,7 +300,7 @@ class Widget extends InputWidget
             if ($this->hasModel() && $this->model->{$this->attributeName} && $this->model->fileExists($this->attributeName)) {
                 $this->settings['files'][] = [
                     'src' => $this->model->urlAttribute($this->attributeName),
-                    'name' => $this->model->{$this->attributeName},
+                    'name' => ($this->hasModel()) ? $this->model->{$this->attributeName} : $this->value,
                     'type' => $this->model->getMimeType($this->attributeName)
                 ];
             }
