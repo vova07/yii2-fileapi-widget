@@ -281,7 +281,7 @@ class Widget extends InputWidget
                         'selector' => $this->getSelector(),
                         'input' => $input,
                         'paramName' => $this->paramName,
-                        'value' => $this->model->{$this->attributeName},
+                        'value' => $this->hasModel() ? $this->model->{$this->attributeName} : $this->value,
                         'preview' => $this->preview,
                         'crop' => $this->crop,
                         'browseGlyphicon' => $this->browseGlyphicon
