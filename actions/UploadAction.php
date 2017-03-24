@@ -8,6 +8,7 @@ use yii\base\DynamicModel;
 use yii\base\InvalidCallException;
 use yii\base\InvalidConfigException;
 use yii\helpers\FileHelper;
+use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
@@ -93,7 +94,7 @@ class UploadAction extends Action
 
             if ($model->hasErrors()) {
                 $result = [
-                    'error' => $model->getFirstError('file')
+                    'error' => Html::encode($model->getFirstError('file')),
                 ];
             } else {
                 if ($this->unique === true && $model->file->extension) {
