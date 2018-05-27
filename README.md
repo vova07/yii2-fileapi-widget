@@ -1,3 +1,5 @@
+# WARNING: This extension is not more maintained (The base JS script [FileAPI](https://github.com/RubaXa/jquery.fileapi) was deprecated)
+
 Yii2 FileAPI widget.
 ==================
 This widget is a Yii 2 wrapper of [FileAPI](https://github.com/RubaXa/jquery.fileapi) plugin.
